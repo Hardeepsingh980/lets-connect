@@ -1,26 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 
-
-
+import { UserContext } from './../../context/User/context';
+import { Navigate } from 'react-router-dom';
 
 const SignIn = () => {
 
-  const clientId = '235004129459-nc0clnor0f9v0tqaq4gmua24d8uk6eit.apps.googleusercontent.com';
+  const {userState,  signInWithGoogle} = useContext(UserContext);
 
+  const clientId = '235004129459-nc0clnor0f9v0tqaq4gmua24d8uk6eit.apps.googleusercontent.com';
 
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
         clientId: clientId,
-        scope: ''
+        scope: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
       });
     };
     gapi.load('client:auth2', initClient);
   });
 
-  const onSuccess = (res) => {
+  const onSuccess = async (res) => {
+    var res = await signInWithGoogle(res.accessToken);
+    if (res) {
+      return <Navigate to="/profile" />
+    }
     console.log('success:', res);
   };
   const onFailure = (err) => {
@@ -31,6 +36,8 @@ const SignIn = () => {
 
   return (
     <>
+
+      {/* {userState.user ?} */}
 
       <GoogleLogin
         clientId={clientId}

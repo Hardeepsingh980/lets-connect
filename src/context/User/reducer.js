@@ -5,7 +5,7 @@ const reducer = (state, action) => {
         case CHANGE_LOADING:
             return {
                 ...state,
-                loading: action.payload,
+                isLoading: action.payload,
             };
         case CHANGE_ERROR:
             return {
@@ -26,3 +26,5 @@ const reducer = (state, action) => {
             return state;
     }
 }
+
+export default reducer;

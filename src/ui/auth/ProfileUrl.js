@@ -1,11 +1,14 @@
 import { Container, Grid, TextField } from '@mui/material'
-import React from 'react'
+import React, {useContext} from 'react'
+import { UserContext } from './../../context/User/context';
+
+
 
 const ProfileUrl = () => {
+
+
   return (
     <>
-
-
       <section>
         <Container maxWidth="lg">
           <Grid container spacing={2} justifyContent="center" alignItems="center">
@@ -20,10 +23,8 @@ const ProfileUrl = () => {
           </Grid>
         </Container>
       </section>
-
-
     </>
-  )
+  );
 }
 
 export default ProfileUrl
