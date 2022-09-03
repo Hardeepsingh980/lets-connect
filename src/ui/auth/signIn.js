@@ -37,16 +37,17 @@ const SignIn = () => {
   return (
     <>
 
-
-
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Sign in with Google"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
-        isSignedIn={true}
-      />
+      <div className="header-btns  ms-auto ms-lg-0  d-sm-flex align-items-center">
+        <GoogleLogin
+          className="header_btn"
+          clientId={clientId}
+          buttonText="Sign in with Google"
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
+        />
+      </div>
 
     </>
   )

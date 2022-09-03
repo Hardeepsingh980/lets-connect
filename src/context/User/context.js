@@ -96,6 +96,20 @@ const UserProvider = ({ children }) => {
         }
     }
 
+    const signOut = async () => {
+        dispatch({ type: CHANGE_LOADING, payload: true });
+        try {
+            localStorage.removeItem('token');
+            dispatch({ type: CHANGE_USER, payload: null });
+            dispatch({ type: CHANGE_TOKEN, payload: null });
+            dispatch({ type: CHANGE_SCHEDULES, payload: [] });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            dispatch({ type: CHANGE_LOADING, payload: false });
+        }
+    }
+
 
     const updateProfileUrl = async (profile_url) => {
         dispatch({ type: CHANGE_LOADING, payload: true });
@@ -173,7 +187,7 @@ const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ userState, signInWithGoogle, updateProfileUrl, addSchedule }}>
+        <UserContext.Provider value={{ userState, signInWithGoogle, updateProfileUrl, addSchedule, signOut }}>
         {children}
         </UserContext.Provider>
     );

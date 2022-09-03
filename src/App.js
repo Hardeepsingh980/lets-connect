@@ -27,7 +27,6 @@ import AddSchedule from './ui/authenticated/AddSchedule';
 import Profile from './ui/authenticated/Profile';
 import CalendarForPublic from './ui/auth/CalendarForPublic';
 
-
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
@@ -38,9 +37,11 @@ const options = {
 }
 
 
+
 function App() {
   return (
     <>
+      <div className='site-wrapper overflow-hidden'>
       <AlertProvider template={AlertTemplate} {...options}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
       <UserProvider>
@@ -48,14 +49,16 @@ function App() {
         <Header />
             <MyRoutes />
           <Footer />
-          
+  
         </BrowserRouter>
       </UserProvider>
         </LocalizationProvider>
       </AlertProvider>
+      </div>
     </>
   );
 }
+
 
 
 function MyRoutes() {
