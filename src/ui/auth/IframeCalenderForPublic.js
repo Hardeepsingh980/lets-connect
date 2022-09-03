@@ -18,9 +18,8 @@ const localizer = momentLocalizer(moment)
 
 
 
-const CalendarForPublic = ({ match, props }) => {
+const IFrameCalendarForPublic = ({ match, props }) => {
 
-  console.log('AAAAAS');
 
   const [events, setEvents] = useState([]);
 
@@ -56,7 +55,6 @@ const CalendarForPublic = ({ match, props }) => {
         event.slots.map((slot) => {
           if (!slot.is_available) {
             setEvents((events) => [...events, {
-              id: slot.id,
               title: "Busy",
               start: new Date(event.date + " " + slot.from_time),
               end: new Date(event.date + " " + slot.to_time),
@@ -64,7 +62,6 @@ const CalendarForPublic = ({ match, props }) => {
           }
           else {
             setEvents((events) => [...events, {
-              id: slot.id,
               title: "Available",
               start: new Date(event.date + " " + slot.from_time),
               end: new Date(event.date + " " + slot.to_time),
@@ -83,9 +80,7 @@ const CalendarForPublic = ({ match, props }) => {
   }, [])
 
   return (
-
-    
-       notFound ? <>User not Found</> : <>
+     notFound ? <>User not Found</> : <>
       <div>Dashboard</div>
       <Calendar
         localizer={localizer}
@@ -115,8 +110,9 @@ const CalendarForPublic = ({ match, props }) => {
       />
 
     </>
+    
 
   )
 }
 
-export default CalendarForPublic
+export default IFrameCalendarForPublic;

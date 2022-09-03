@@ -60,7 +60,10 @@ const Profile = () => {
             <QRCode value={`localhost:8000/${profileUrl}`} />
 
 
-            
+            To Embed our scheduler calender on your website, copy and paste the following code into your website.
+            <textarea>
+              {'<iframe src={`https://letsconnect.com/iframe/${profileUrl}`} width="100%" height="600px" frameborder="0"></iframe>'}
+            </textarea>
 
 
           </Grid>
