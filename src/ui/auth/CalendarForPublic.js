@@ -32,6 +32,8 @@ const CalendarForPublic = ({ match, props }) => {
 
   const [isNotifyMeModalOpen, setIsNotifyMeModalOpen] = useState(false);
 
+  const [refresh, setRefresh] = useState(false);
+
 
 
   let { profileUrl } = useParams();
@@ -80,12 +82,12 @@ const CalendarForPublic = ({ match, props }) => {
 
   useEffect(() => {
     getEvents();
-  }, [])
+  }, [refresh])
 
   return (
 
-    
-       notFound ? <>User not Found</> : <>
+
+    notFound ? <>User not Found</> : <>
       <div>Dashboard</div>
       <Calendar
         localizer={localizer}
@@ -95,8 +97,11 @@ const CalendarForPublic = ({ match, props }) => {
         style={{ height: 500 }}
         onSelectEvent={(event) => {
           setSelectedEvent(event);
-          // setIsBookSlotModalOpen(true);
-          setIsNotifyMeModalOpen(true);
+          if (event.title === "Available") {
+            setIsBookSlotModalOpen(true);
+          } else {
+            setIsNotifyMeModalOpen(true);
+          }
         }}
       />
 
@@ -105,6 +110,7 @@ const CalendarForPublic = ({ match, props }) => {
         isBookSlotModalOpen={isBookSlotModalOpen}
         handleCloseBookSlotModal={handleCloseBookSlotModal}
         selectedEvent={selectedEvent}
+        setRefresh={setRefresh}
 
       />
 
@@ -112,6 +118,7 @@ const CalendarForPublic = ({ match, props }) => {
         isNotifyMeModalOpen={isNotifyMeModalOpen}
         handleCloseNotifyMeModal={handleCloseNotifyMeModal}
         selectedEvent={selectedEvent}
+        setRefresh={setRefresh}
       />
 
     </>

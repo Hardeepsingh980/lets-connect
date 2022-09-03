@@ -42,6 +42,7 @@ function BookSlotModal(props) {
         axios.post(url, data, config).then((response) => {
             props.handleCloseBookSlotModal();
             alert.success('Your slot has been booked successfully, You will receive an meeting link on your email shortly');
+            props.setRefresh(!props.refresh);
         }).catch((error) => {
             console.log(error);
         });  
