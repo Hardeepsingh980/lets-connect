@@ -40,6 +40,7 @@
   background-color: #f2f5fb !important;
   border-color: #f2f5fb !important;
   box-shadow: none !important;
+  border: hidden !important;
 }
 .header_btn div{
   background: transparent !important;
@@ -73,6 +74,110 @@
 footer{
   background: #25373f;
 }
+
+
+
+
+
+
+
+section{
+  min-height: calc(100vh - 48px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.make_profile_url_dv1{
+  text-align: right;
+}
+.make_profile_url_dv2{
+  text-align: left;
+  /* border: 1px solid #c4c4c4; */
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+.make_profile_url_dv2 h3{
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+.make_profile_url_dv2 h4{
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.make_profile_url_dv2 p{
+  font-size: 14px;
+}
+.make_profile_url_dv2 hr{
+  border: hidden;
+  border-bottom: 1px solid #c4c4c4;
+  opacity: 0.5;
+  margin: 25px 0;
+}
+
+
+
+.mpu_form{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+.mpu_form > label{
+  font-weight: 600;
+  color: var(--color-headings);
+  font-size: 15px;
+}
+.mpu_form .MuiFormControl-root{}
+.mpu_form .MuiFormControl-root *{
+  font-size: 15px;
+}
+
+
+
+
+.mpu_form .MuiFormControl-root label{
+  color: #666666 !important;
+}
+
+
+.mpu_form .MuiInputBase-root input{
+  text-transform: lowercase;
+}
+.mpu_form .MuiInputBase-root fieldset{
+  border-color: #c4c4c4 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

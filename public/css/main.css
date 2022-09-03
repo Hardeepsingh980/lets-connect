@@ -15,9 +15,9 @@
 
 ******************************************************/
 /*=== Media Query ===*/
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"); */
 body[data-theme='dark'], .dark-bg, .dark-mode-texts {
-  --bg:                 #19191b;
+  --bg:                   #19191b;
   --bg-2:                 #19191b;
   --bg-3:                 #19191b;
   --bg-4:                 #19191b;
@@ -86,6 +86,11 @@ body {
   --border-color-4:      rgba(181, 181, 181, 0.2);
   --border-color-5:     rgba(38, 39, 41, 0.3);
   --border-color-6:     rgba(130, 130, 136, 0.3);
+  font-family: 'Poppins', sans-serif !important;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Bitter', serif !important;
 }
 
 p {
@@ -6174,7 +6179,7 @@ ________________________________ */
 
 .footer-widgets__list--l3 li {
   color: var(--color-texts-3);
-  font-family: Rubik;
+  /* font-family: Rubik; */
   font-size: 16px;
   font-weight: 400;
   font-style: normal;
@@ -12409,7 +12414,7 @@ ________________________________ */
 
 .contact-widget-box__title-block .widget-box__title {
   color: #ffffff;
-  font-family: "Rubik", sans-serif;
+  /* font-family: "Rubik", sans-serif; */
   font-size: 32px;
   font-weight: 500;
   font-style: normal;

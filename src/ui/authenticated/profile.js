@@ -1,7 +1,7 @@
 import { Container, Grid, TextField } from '@mui/material'
 import React, {useContext, useState} from 'react'
 
-import { UserContext } from './../../context/User/context';
+import { UserContext } from '../../context/User/context';
 
 import QRCode from "react-qr-code";
 
