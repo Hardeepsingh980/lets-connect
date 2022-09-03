@@ -6,6 +6,8 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { TextareaAutosize } from '@mui/material';
 
 
+import axios from 'axios';
+import { useAlert } from 'react-alert'
 
 
 
@@ -13,11 +15,34 @@ import { TextareaAutosize } from '@mui/material';
 
 function NotifyMeModal(props) {
 
+    const alert = useAlert()
+
     const [name, setName] = React.useState();
     const [email, setEmail] = React.useState();
 
+    const url = 'http://192.168.197.18:8088/public/notify/';
+
     const handleClick = () => {
-        
+
+        const data = {
+            full_name: name,
+            email: email,
+            slot: props.selectedEvent.id
+        };
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        axios.post(url, data, config).then((response) => {
+            props.handleCloseNotifyMeModal();
+            alert.success('We will notify you, If this slot becomes available');
+            props.setRefresh(!props.refresh);
+        }).catch((error) => {
+            console.log(error);
+        });  
     };
 
 
