@@ -10,18 +10,18 @@ import Footer from './ui/components/Footer';
 import Dashboard from './ui/authenticated/Dashboard';
 import MakeProfileUrl from './ui/authenticated/MakeProfileUrl';
 import AddSchedule from './ui/authenticated/AddSchedule';
+import Profile from './ui/authenticated/Profile';
+import CalendarForPublic from './ui/auth/CalendarForPublic';
 
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import Profile from './ui/authenticated/Profile';
-import CalendarForPublic from './ui/auth/CalendarForPublic';
 
 
 
 function App() {
   return (
-    <>
+    <div className='site-wrapper overflow-hidden'>
 
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -45,7 +45,7 @@ function App() {
 
 
 
-    </>
+    </div>
   );
 }
 

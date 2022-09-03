@@ -9,30 +9,48 @@ const Header = () => {
     <>
 
 
-      <section>
-        <Container maxWidth="lg">
-          <Grid container spacing={2} >
-            <Grid item xs={6}>
-              <p>Pyrites Logo</p>
 
 
-              <ul>
-                <Link to="/" >Home</Link> &nbsp; &nbsp;
-                <Link to="/profile-url" >profile url</Link> &nbsp; &nbsp;
-                <Link to="/dashboard" >dashboard</Link> &nbsp; &nbsp;
-                <Link to="/add-schedule" >add-schedule</Link> &nbsp; &nbsp;
-                <Link to="/profile" >profile</Link> &nbsp; &nbsp;
-                <Link to="/calendar-for-public" >CalendarForPublic</Link> &nbsp; &nbsp;
-              </ul>
-            </Grid>
-            <Grid item xs={6}>
 
-              {'Token' === 'Token' ? <SignIn /> : <Logout />}
+      <header className="site-header site-header--menu-left dynamic-sticky-bg px-3 site-header--absolute site-header--sticky">
+        <div className="container-fluid">
+          <nav className="navbar site-navbar">
+            <div className="brand-logo">
+              <a href="/">
+                <img src="/image/logo-dark.png" alt="" className="light-version-logo" />
+                <img src="/image/logo-white.png" alt="" className="dark-version-logo" />
+              </a>
+            </div>
+            <div className="menu-block-wrapper  ms-lg-7">
+              <div className="menu-overlay"></div>
+              <nav className="menu-block" id="append-menu-header">
+                <div className="mobile-menu-head">
+                  <div className="go-back">
+                    <i className="fa fa-angle-left"></i>
+                  </div>
+                  <div className="current-menu-title"></div>
+                  <div className="mobile-menu-close">&times;</div>
+                </div>
+              </nav>
+            </div>
 
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
+            
+            {'Token' === 'Token' ? <SignIn /> : <Logout />}
+
+
+
+            
+            
+          </nav>
+        </div>
+      </header>
+
+
+
+
+
+     
+     
 
 
 

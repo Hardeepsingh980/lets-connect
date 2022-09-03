@@ -6,15 +6,28 @@ const Footer = () => {
     <>
 
 
-      <section>
-        <Container maxWidth="lg">
-          <Grid container spacing={2} >
-            <Grid item xs={12}>
-              <p>Copyright by Pyrites</p>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
+
+
+
+
+      <footer class="footer-area--l1 dark-mode-texts">
+        <div class="container">
+
+
+          <div class="footer-copyright">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-12">
+                <div class="copyright text-center">
+                  <p class="copyright__text">© Pyrites, All Rights Reserved</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+
 
 
     </>
