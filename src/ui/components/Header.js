@@ -1,6 +1,6 @@
 import { Container, Grid } from '@mui/material'
 import React from 'react'
-import SignIn from '../auth/SignIn'
+import SignIn from '../auth/signIn'
 
 const Header = () => {
   return (
