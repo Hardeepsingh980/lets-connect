@@ -22,11 +22,9 @@ const SignIn = () => {
   });
 
   const onSuccess = async (res) => {
-    var res = await signInWithGoogle(res.accessToken);
-    if (res) {
-      return <Navigate to="/profile" />
-    }
     console.log('success:', res);
+    var res = await signInWithGoogle(res.accessToken);
+
   };
   const onFailure = (err) => {
     console.log('failed:', err);
@@ -37,6 +35,10 @@ const SignIn = () => {
   return (
     <>
 
+      {
+        userState.user ? <Navigate to="/profile-url" /> : null
+      }
+
       <div className="header-btns  ms-auto ms-lg-0  d-sm-flex align-items-center">
         <GoogleLogin
           className="header_btn"
@@ -45,7 +47,6 @@ const SignIn = () => {
           onSuccess={onSuccess}
           onFailure={onFailure}
           cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
         />
       </div>
 

@@ -84,7 +84,9 @@ const UserProvider = ({ children }) => {
             
             localStorage.setItem('token', response.data.key);
 
+            
             dispatch({ type: CHANGE_TOKEN, payload:  response.data.key });
+            getUser(response.data.key);
             return true;
             
         } catch (error) {

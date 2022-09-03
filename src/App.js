@@ -72,11 +72,11 @@ function MyRoutes() {
 
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/calendar-for-public" element={<CalendarForPublic />} />
-            <Route path="/profile-url" element={<RequireAuth><MakeProfileUrl /></RequireAuth>} />
-            <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
-            <Route path="/add-schedule" element={<RequireAuth><AddSchedule /></RequireAuth>} />
-            <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route path="/:profileUrl?" element={<CalendarForPublic />} />
+        <Route path="/profile-url" element={<RequireAuth><MakeProfileUrl /></RequireAuth>} />
+        <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
+        <Route path="/add-schedule" element={<RequireAuth><AddSchedule /></RequireAuth>} />
+        <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
 
       </Routes>
