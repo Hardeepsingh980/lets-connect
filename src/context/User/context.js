@@ -1,7 +1,7 @@
 import { useState, createContext, useReducer, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import reducer from './reducer';
-import { CHANGE_ERROR, CHANGE_TOKEN, CHANGE_LOADING, CHANGE_USER } from './actions';
+import { CHANGE_ERROR, CHANGE_TOKEN, CHANGE_LOADING, CHANGE_USER, CHANGE_SCHEDULES } from './actions';
 import axios from 'axios';
 import { useAlert } from 'react-alert'
 
@@ -13,6 +13,7 @@ const initialState = {
     token: null,
     isLoading: true,
     error: null,
+    schedules: []
 };
 
 const UserProvider = ({ children }) => {
@@ -63,6 +64,8 @@ const UserProvider = ({ children }) => {
                 payload: token,
             });
             
+            getSchedules(token);
+            
             return response.data;
         } catch (error) {
             console.log(error);
@@ -93,12 +96,84 @@ const UserProvider = ({ children }) => {
         }
     }
 
+
+    const updateProfileUrl = async (profile_url) => {
+        dispatch({ type: CHANGE_LOADING, payload: true });
+        try {
+            const response = await axios.post(`${URL}/api/users/set_profile_url/`, {
+                profile_url,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${userState.token}`
+                }
+            });
+            
+            dispatch({ type: CHANGE_USER, payload: response.data });
+            const token = localStorage.getItem('token');
+            await getUser(token);
+            return true;
+            
+        } catch (error) {
+            console.log(error);
+            alert.error('Something went wrong');
+            return false;
+        } finally {
+            dispatch({ type: CHANGE_LOADING, payload: false });
+        }
+    }
+
+
+    const getSchedules = async (token) => {
+        dispatch({ type: CHANGE_LOADING, payload: true });
+        try {
+            const response = await axios.get(`${URL}/api/schedules/`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`
+                }
+            });
+            
+            dispatch({ type: CHANGE_SCHEDULES, payload: response.data });
+            return true;
+            
+        } catch (error) {
+            console.log(error);
+            alert.error('Something went wrong');
+            return false;
+        } finally {
+            dispatch({ type: CHANGE_LOADING, payload: false });
+        }
+    }
+
+
+    const addSchedule = async (requestData) => {
+        dispatch({ type: CHANGE_LOADING, payload: true });
+        try {
+            const response = await axios.post(`${URL}/api/schedules/add/`, requestData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${userState.token}`
+                }
+            });
+            
+            getSchedules(userState.token);
+            
+        } catch (error) {
+            console.log(error);
+            alert.error('Something went wrong');
+        } finally {
+            dispatch({ type: CHANGE_LOADING, payload: false });
+        }
+    }
+
+
     useEffect(() => {
         init();
     }, []);
 
     return (
-        <UserContext.Provider value={{ userState, signInWithGoogle }}>
+        <UserContext.Provider value={{ userState, signInWithGoogle, updateProfileUrl, addSchedule }}>
         {children}
         </UserContext.Provider>
     );

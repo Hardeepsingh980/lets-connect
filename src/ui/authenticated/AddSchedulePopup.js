@@ -13,8 +13,10 @@ import { TextareaAutosize } from '@mui/material';
 
 function AddSchedulePopup(props) {
 
-  const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
-
+  const [from_time, setFromTime] = React.useState();
+  const [to_time, setToTime] = React.useState();
+  const [max_attendie_allowed, setMaxAttendieAllowed] = React.useState();
+  const [meeting_agenda, setMeetingAgenda] = React.useState();
 
   const handleChange = (newValue) => {
     props.setAddSchedulePopup(newValue);
@@ -38,15 +40,19 @@ function AddSchedulePopup(props) {
 
           <TimePicker
             label="From"
-            value={value}
-            onChange={handleChange}
+            value={from_time}
+            onChange={(newValue) => {
+              setFromTime(newValue);
+            }}
             renderInput={(params) => <TextField {...params} />}
           />
 
           <TimePicker
             label="To"
-            value={value}
-            onChange={handleChange}
+            value={to_time}
+            onChange={(newValue) => {
+              setToTime(newValue);
+            }}
             renderInput={(params) => <TextField {...params} />}
           />
 
@@ -58,15 +64,38 @@ function AddSchedulePopup(props) {
               shrink: true,
             }}
             variant="filled"
+            value={max_attendie_allowed}
+            onChange={(e) => {
+              setMaxAttendieAllowed(e.target.value);
+            }}
           />
 
           <TextareaAutosize
             placeholder="Meeting Agenda"
             minRows={10}
+            value={meeting_agenda}
+            onChange={(e) => {
+              setMeetingAgenda(e.target.value);
+            }}
+
           />
 
 
-          <button>Add Schedule</button>
+          <button onClick={() => {
+            props.setSlots([...props.slots, {
+              from_time: dayjs(from_time).format('HH:mm'),
+              to_time: dayjs(to_time).format('HH:mm'),
+              max_people: max_attendie_allowed,
+              meeting_desctiption: meeting_agenda
+            }]);
+            
+            setFromTime('');
+            setToTime('');
+            setMaxAttendieAllowed('');
+            setMeetingAgenda('');
+
+            props.handleCloseAddSchedulePopup();
+          }}>Add Schedule</button>
 
         </div>
 

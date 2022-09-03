@@ -12,7 +12,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import dayjs from 'dayjs';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -24,15 +24,25 @@ import { Container, Grid, TextareaAutosize } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import AddSchedulePopup from './AddSchedulePopup';
 
+import { UserContext } from './../../context/User/context';
+import { Navigate } from 'react-router-dom';
+
+
 
 function AddSchedule() {
+
+  const {userState,  addSchedule} = useContext(UserContext);
+
   const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
 
   const [isAddSchedulePopup, setAddSchedulePopup] = useState(false);
   const handleOpenAddSchedulePopup = () => setAddSchedulePopup(true);
   const handleCloseAddSchedulePopup = () => setAddSchedulePopup(false);
 
+  const [slots, setSlots] = useState([]);
 
+  const [from_date, setFromDate] = useState();
+  const [to_date, setToDate] = useState();
 
 
   const handleChange = (newValue) => {
@@ -40,7 +50,14 @@ function AddSchedule() {
   };
 
 
-
+  const handleClick = async () => {
+    await addSchedule({
+      from_date: dayjs(from_date).format('YYYY-MM-DD'),
+      to_date: dayjs(to_date).format('YYYY-MM-DD'),
+      slots: slots
+    });
+    return <Navigate to={'/dashboard'} />
+  }
 
 
 
@@ -73,14 +90,18 @@ function AddSchedule() {
 
               <DesktopDatePicker
                 label="From"
-                value={value}
-                onChange={handleChange}
+                value={from_date}
+                onChange={(newValue) => {
+                  setFromDate(newValue);
+                }}
                 renderInput={(params) => <TextField {...params} />}
               />
               <DesktopDatePicker
                 label="To"
-                value={value}
-                onChange={handleChange}
+                value={to_date}
+                onChange={(newValue) => {
+                  setToDate(newValue);
+                }}
                 renderInput={(params) => <TextField {...params} />}
               />
 
@@ -113,61 +134,29 @@ function AddSchedule() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>01:00 AM</td>
-                    <td>01:30 AM</td>
-                    <td>2</td>
-                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus odit recusandae ut non totam eius eos distinctio architecto, est voluptatum iste esse corrupti veniam expedita atque omnis odio quibusdam at illum facere eligendi perferendis. Aperiam, similique officiis nihil ea id accusamus ducimus totam maxime error maiores dolorem illo magni deleniti.</td>
-                  </tr>
-                  <tr>
-                    <td>01:00 AM</td>
-                    <td>01:30 AM</td>
-                    <td>2</td>
-                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus odit recusandae ut non totam eius eos distinctio architecto, est voluptatum iste esse corrupti veniam expedita atque omnis odio quibusdam at illum facere eligendi perferendis. Aperiam, similique officiis nihil ea id accusamus ducimus totam maxime error maiores dolorem illo magni deleniti.</td>
-                  </tr>
+                  {
+                    slots.map((slot, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{slot.from_time}</td>
+                          <td>{slot.to_time}</td>
+                          <td>{slot.max_people}</td>
+                          <td>{slot.meeting_desctiption}</td>
+                        </tr>
+                      )
+                    })
+                  }
                 </tbody>
               </table>
-
-
             </Grid>
 
-
-
-            <Grid item xs={12}>
-              <p>Pick Sgedule Validty</p>
-            </Grid>
-
+            <button onClick={handleClick}>Submit</button>
 
           </Grid>
         </Container>
       </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <AddSchedulePopup isAddSchedulePopup={isAddSchedulePopup} handleCloseAddSchedulePopup={handleCloseAddSchedulePopup} />
+      <AddSchedulePopup isAddSchedulePopup={isAddSchedulePopup} handleCloseAddSchedulePopup={handleCloseAddSchedulePopup} setSlots={setSlots} slots={slots} />
 
 
 

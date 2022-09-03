@@ -1,4 +1,4 @@
-import { CHANGE_ERROR, CHANGE_TOKEN, CHANGE_LOADING, CHANGE_USER } from './actions';
+import { CHANGE_ERROR, CHANGE_TOKEN, CHANGE_LOADING, CHANGE_USER, CHANGE_SCHEDULES} from './actions';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -22,6 +22,12 @@ const reducer = (state, action) => {
                 ...state,
                 token: action.payload,
             };
+        case CHANGE_SCHEDULES:
+            return {
+                ...state,
+                schedules: action.payload,
+            };
+        
         default:
             return state;
     }

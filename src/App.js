@@ -21,6 +21,13 @@ import AlertTemplate from 'react-alert-template-basic'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
+import Dashboard from './ui/authenticated/Dashboard';
+import MakeProfileUrl from './ui/authenticated/MakeProfileUrl';
+import AddSchedule from './ui/authenticated/AddSchedule';
+import Profile from './ui/authenticated/Profile';
+import CalendarForPublic from './ui/auth/CalendarForPublic';
+
+
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
@@ -62,12 +69,11 @@ function MyRoutes() {
 
       <Routes>
         <Route exact path="/" element={<Home />} />
-         <Route path="/profile" element={<RequireAuth ><ProfileUrl /></RequireAuth>} />
-         <Route path="/profile-url" element={<MakeProfileUrl />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/add-schedule" element={<AddSchedule />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/calendar-for-public" element={<CalendarForPublic />} />
+        <Route path="/calendar-for-public" element={<CalendarForPublic />} />
+            <Route path="/profile-url" element={<RequireAuth><MakeProfileUrl /></RequireAuth>} />
+            <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
+            <Route path="/add-schedule" element={<RequireAuth><AddSchedule /></RequireAuth>} />
+            <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
 
       </Routes>
