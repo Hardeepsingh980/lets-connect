@@ -36,3 +36,51 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.popup_style1{
+  display: flex;
+}
+
+.popup_style1_body{
+  background: #fff;
+  max-width: 500px;
+  margin: auto;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

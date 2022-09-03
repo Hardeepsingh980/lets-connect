@@ -8,7 +8,7 @@ const localizer = momentLocalizer(moment)
 
 
 
-const Dashboard = () => {
+const CalendarForPublic = () => {
   return (
     <>
       <div>Dashboard</div>
@@ -23,4 +23,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default CalendarForPublic

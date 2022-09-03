@@ -18,6 +18,9 @@ import {useContext} from 'react';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
@@ -32,6 +35,7 @@ function App() {
   return (
     <>
       <AlertProvider template={AlertTemplate} {...options}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
       <UserProvider>
         <BrowserRouter>
         <Header />
@@ -40,6 +44,7 @@ function App() {
           
         </BrowserRouter>
       </UserProvider>
+        </LocalizationProvider>
       </AlertProvider>
     </>
   );
@@ -58,6 +63,13 @@ function MyRoutes() {
       <Routes>
         <Route exact path="/" element={<Home />} />
          <Route path="/profile" element={<RequireAuth ><ProfileUrl /></RequireAuth>} />
+         <Route path="/profile-url" element={<MakeProfileUrl />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/add-schedule" element={<AddSchedule />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/calendar-for-public" element={<CalendarForPublic />} />
+
+
       </Routes>
     
     </>
