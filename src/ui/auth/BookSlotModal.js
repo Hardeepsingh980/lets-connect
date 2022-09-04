@@ -8,6 +8,7 @@ import { TextareaAutosize } from '@mui/material';
 import { useAlert } from 'react-alert'
 
 import axios from 'axios';
+import { APIURL } from '../../const';
 
 
 
@@ -22,7 +23,7 @@ function BookSlotModal(props) {
     const [email, setEmail] = React.useState();
     const [notes, setNotes] = React.useState();
 
-    const url = 'http://192.168.197.18:8088/public/schedule/';
+    const url = `${APIURL}/public/schedule/`;
 
     const handleClick = () => {
 

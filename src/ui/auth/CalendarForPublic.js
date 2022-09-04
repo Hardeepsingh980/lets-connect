@@ -10,6 +10,7 @@ import axios from 'axios';
 
 import BookSlotModal from './BookSlotModal';
 import NotifyMeModal from './NotifyMeModal';
+import { APIURL } from '../../const';
 
 
 
@@ -48,7 +49,7 @@ const CalendarForPublic = ({ match, props }) => {
   }
 
 
-  const url = `http://192.168.197.18:8088/api/public/schedules/${profileUrl}/`;
+  const url = `${APIURL}/api/public/schedules/${profileUrl}/`;
 
   const getEvents = async () => {
 
@@ -90,6 +91,7 @@ const CalendarForPublic = ({ match, props }) => {
     notFound ? <>User not Found</> : <>
       <div>Dashboard</div>
       <Calendar
+      className='big_calendar_dv'
         localizer={localizer}
         events={events}
         startAccessor="start"
