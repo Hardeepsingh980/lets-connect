@@ -43,7 +43,7 @@ const MakeProfileUrl = () => {
                   <h3>Welcome to Lets Connect</h3>
                   <p>We take the work out of connecting with others so you can accomplish more.</p>
                   <hr />
-                  <h4>Create your Calendly URL</h4>
+                  <h4>Create your Lets Connect URL</h4>
                   <p>Choose a URL that describes you or your profile in a concise way. Make it short and easy to remember so you can share links with ease.</p>
 
                   <div className='mpu_form'>
@@ -52,7 +52,7 @@ const MakeProfileUrl = () => {
                   </div>
                 </div>
 
-                <button className=' btn-purple-heart btn btn--lg' onClick={handleContinue}>Continue</button>
+                <button className='btn-purple-heart btn btn--lg' onClick={handleContinue}>Continue</button>
               </div>
 
 

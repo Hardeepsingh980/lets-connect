@@ -80,7 +80,7 @@ const IFrameCalendarForPublic = ({ match, props }) => {
   }, [])
 
   return (
-     notFound ? <>User not Found</> : <>
+     notFound ? <><section className='user_not_found'><div className='container'><div className='row'><div className='col-12'><p>User not Found</p></div></div></div></section></> : <>
       <div>Dashboard</div>
       <Calendar
         localizer={localizer}

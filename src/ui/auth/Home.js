@@ -15,9 +15,7 @@ const Home = () => {
       {
         userState.user ? userState.user.profile_url ? <Navigate to={'/dashboard'} /> : <Navigate to={'/profile-url'} /> : null
       }
-      {/* <div id="loading">
-        <img src="image/favicon.png" alt="">
-      </div> */}
+      
 
 
 
@@ -37,15 +35,6 @@ const Home = () => {
                 </h1>
                 <p className="welcome-content__descriptions">We help customers to display their availability to their client, 
                 <br className="d-none d-xs-block" />so they can better manage their days.</p>
-                {/* <div className="newsletter-form">
-                  <form action="https://finestdevs.com/.">
-                    <div className="d-flex align-items-center justify-content-center flex-column flex-xs-row">
-                      <input className="form-control " type="email" placeholder="Enter your email" required />
-                      <button className=" btn-purple-heart btn btn--lg" type="submit">Start For Free</button>
-                    </div>
-                  </form>
-                </div> */}
-                {/* <p className="welcome-content__terms-text">By clicking the button, you are agreeing with our <a className="btn btn-link" href="https://finestdevs.com/terms-page.html">Terms & Conditions.</a> </p> */}
               </div>
             </div>
 
@@ -59,12 +48,12 @@ const Home = () => {
                   <div className="welcome-image__single welcome-image--group-01__img-1">
                     <img className="w-100" src="image/l1-hero-img-1.png" alt="" />
                   </div>
-                  <div className="welcome-image__single welcome-image--group-01__img-2">
+                  {/* <div className="welcome-image__single welcome-image--group-01__img-2">
                     <img className="w-100" src="image/l1-hero-img-2.png" alt="" />
-                  </div>
-                  <div className="welcome-image__single welcome-image--group-01__img-3">
+                  </div> */}
+                  {/* <div className="welcome-image__single welcome-image--group-01__img-3">
                     <img className="w-100" src="image/l1-hero-img-3.png" alt="" />
-                  </div>
+                  </div> */}
                   <div className="welcome-image__single welcome-image--group-01__img-4">
                     <img className="w-100" src="image/hero-dots.png" alt="" />
                   </div>

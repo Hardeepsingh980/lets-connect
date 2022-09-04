@@ -9572,7 +9572,7 @@ ________________________________ */
 .welcome-image--group-01__img-5 {
   position: absolute;
   left: 31%;
-  top: -50%;
+  top: -40%;
   transform: translateX(-50%);
   width: 24%;
 }
@@ -16780,7 +16780,7 @@ mark[data-aos="highlight-text"].aos-animate {
 
 
 .site-header--sticky{
-  background: white;
+  background: rgb(255 255 255 / 0.9);
 }
 
 

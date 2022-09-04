@@ -4,7 +4,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import axios from 'axios';
 
@@ -87,41 +87,66 @@ const CalendarForPublic = ({ match, props }) => {
   return (
 
 
-    notFound ? <>User not Found</> : <>
-      <div>Dashboard</div>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-        onSelectEvent={(event) => {
-          setSelectedEvent(event);
-          if (event.title === "Available") {
-            setIsBookSlotModalOpen(true);
-          } else {
-            setIsNotifyMeModalOpen(true);
-          }
-        }}
-      />
+    notFound ? <>
+      <section className='user_not_found'><div className='container'><div className='row'><div className='col-12'><p>User not Found</p></div></div></div></section>
+    </> :
+      <>
 
 
-      <BookSlotModal
-        isBookSlotModalOpen={isBookSlotModalOpen}
-        handleCloseBookSlotModal={handleCloseBookSlotModal}
-        selectedEvent={selectedEvent}
-        setRefresh={setRefresh}
 
-      />
+        <section className="service-area service-area--l1 border-top border-default-color-2 bg-default-3">
+          <div className="container">
+            <div className="row align-items-center justify-content-center">
 
-      <NotifyMeModal
-        isNotifyMeModalOpen={isNotifyMeModalOpen}
-        handleCloseNotifyMeModal={handleCloseNotifyMeModal}
-        selectedEvent={selectedEvent}
-        setRefresh={setRefresh}
-      />
 
-    </>
+
+
+
+              <div className="col-12">
+                <Calendar
+                  className='big_calendar_dv'
+                  localizer={localizer}
+                  events={events}
+                  startAccessor="start"
+                  endAccessor="end"
+                  style={{ height: 500 }}
+                  onSelectEvent={(event) => {
+                    setSelectedEvent(event);
+                    if (event.title === "Available") {
+                      setIsBookSlotModalOpen(true);
+                    } else {
+                      setIsNotifyMeModalOpen(true);
+                    }
+                  }}
+                />
+              </div>
+
+
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+
+        <BookSlotModal
+          isBookSlotModalOpen={isBookSlotModalOpen}
+          handleCloseBookSlotModal={handleCloseBookSlotModal}
+          selectedEvent={selectedEvent}
+          setRefresh={setRefresh}
+
+        />
+
+        <NotifyMeModal
+          isNotifyMeModalOpen={isNotifyMeModalOpen}
+          handleCloseNotifyMeModal={handleCloseNotifyMeModal}
+          selectedEvent={selectedEvent}
+          setRefresh={setRefresh}
+        />
+
+      </>
 
   )
 }

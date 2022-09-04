@@ -12,7 +12,7 @@ import Footer from './ui/components/Footer';
 
 import { UserProvider, UserContext } from './context/User/context';
 
-import {useContext} from 'react';
+import { useContext } from 'react';
 
 
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
@@ -43,17 +43,17 @@ function App() {
   return (
     <>
       <div className='site-wrapper overflow-hidden'>
-      <AlertProvider template={AlertTemplate} {...options}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <UserProvider>
-        <BrowserRouter>
-        
-            <MyRoutes />
-  
-        </BrowserRouter>
-      </UserProvider>
-        </LocalizationProvider>
-      </AlertProvider>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <UserProvider>
+              <BrowserRouter>
+
+                <MyRoutes />
+
+              </BrowserRouter>
+            </UserProvider>
+          </LocalizationProvider>
+        </AlertProvider>
       </div>
     </>
   );
@@ -65,41 +65,50 @@ function MyRoutes() {
 
 
 
-  
+
 
   return (
-    <>  
+    <>
 
       <Routes>
-        <Route exact path="/" element={<><Header /><Home /><Footer/></>} />
-        <Route path="/:profileUrl" element={ <><Header /><CalendarForPublic /><Footer/></>} />
+        <Route exact path="/" element={<><Header /><Home /><Footer /></>} />
+        <Route path="/:profileUrl" element={<><Header /><CalendarForPublic /><Footer /></>} />
         <Route path="/iframe/:profileUrl" element={<IFrameCalendarForPublic />} />
-        <Route path="/profile-url" element={ <><Header /><RequireAuth><MakeProfileUrl /></RequireAuth><Footer/></> } />
-        <Route path="/dashboard" element={  <><Header /><RequireAuth><Dashboard /></RequireAuth><Footer/></>} />
-        <Route path="/add-schedule" element={  <><Header /><RequireAuth><AddSchedule /></RequireAuth><Footer/></> } />
-        <Route path="/profile" element={ <><Header /><RequireAuth><Profile /></RequireAuth><Footer/></>  } />
+        <Route path="/profile-url" element={<><Header /><RequireAuth><MakeProfileUrl /></RequireAuth><Footer /></>} />
+        <Route path="/dashboard" element={<><Header /><RequireAuth><Dashboard /></RequireAuth><Footer /></>} />
+        <Route path="/add-schedule" element={<><Header /><RequireAuth><AddSchedule /></RequireAuth><Footer /></>} />
+        <Route path="/profile" element={<><Header /><RequireAuth><Profile /></RequireAuth><Footer /></>} />
 
 
       </Routes>
-    
+
     </>
-    
+
   );
 }
 
 
 function RequireAuth({ children }) {
-  const {userState} = useContext(UserContext);
+  const { userState } = useContext(UserContext);
 
   if (userState.isLoading) {
-    return <div>Loading...</div>;
+    // return <div>Loading...</div>;
+    return <>
+      <div id="loading">
+        <img src="image/favicon.png" alt=""/>
+      </div>
+    </>;
+
+
+
+
   }
-    if (userState.user) {
-      return children;
-    } else {
-      return <Navigate to="/" />;
-    }    
-  
+  if (userState.user) {
+    return children;
+  } else {
+    return <Navigate to="/" />;
+  }
+
 }
 
 
