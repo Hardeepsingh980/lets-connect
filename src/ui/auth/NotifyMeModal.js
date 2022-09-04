@@ -8,6 +8,7 @@ import { TextareaAutosize } from '@mui/material';
 
 import axios from 'axios';
 import { useAlert } from 'react-alert'
+import { APIURL } from '../../const';
 
 
 
@@ -20,7 +21,7 @@ function NotifyMeModal(props) {
 	const [name, setName] = React.useState();
 	const [email, setEmail] = React.useState();
 
-	const url = 'http://192.168.197.18:8088/public/notify/';
+    const url = `${APIURL}/public/notify/`;
 
 	const handleClick = () => {
 

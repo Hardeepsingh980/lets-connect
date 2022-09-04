@@ -9,6 +9,8 @@ import { UserContext } from '../../context/User/context';
 import { Link } from 'react-router-dom';
 
 
+import MeetingDetailModal from './MeetingDetailModal';
+
 
 
 const localizer = momentLocalizer(moment)
@@ -22,40 +24,43 @@ const Dashboard = () => {
 
   const [events, setEvents] = useState([]);
 
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const [isMeetingDetailsModalOpen, setIsMeetingDetailsModalOpen] = useState(false);
+
+  const handleCloseIsMeetingDetailsModalOpen = () => {
+    setIsMeetingDetailsModalOpen(false);
+  }
+
+
 
   useEffect(() => {
 
-    console.log('AAYA');
-
-    userState.schedules.map((event) => {
-      event.slots.map((slot) => {
-        if (!slot.is_available) {
-          setEvents((events) => [...events, {
-            title: "Busy",
-            start: new Date(event.date + " " + slot.from_time),
-            end: new Date(event.date + " " + slot.to_time),
-          }])
-
-        } else {
-          setEvents((events) => [...events, {
-            title: "Available",
-            start: new Date(event.date + " " + slot.from_time),
-            end: new Date(event.date + " " + slot.to_time),
-          }])
-        }
-      });
-    })
+      userState.schedules.map((event) => {
+        event.slots.map((slot) => {
+            if (!slot.is_available) {
+              setEvents((events) => [...events, {
+                title: "Busy",
+                start: new Date(event.date + " " + slot.from_time),
+                end: new Date(event.date + " " + slot.to_time),
+                meetings: slot.meetings
+              }])
+  
+            } else {
+              setEvents((events) => [...events, {
+                title: "Available",
+                start: new Date(event.date + " " + slot.from_time),
+                end: new Date(event.date + " " + slot.to_time),
+                meetings: slot.meetings
+              }])
+            }
+        });
+      })
 
   }, [userState.schedules])
 
   return (
     <>
-
-
-
-
-
-
       <section className="service-area service-area--l1 border-top border-default-color-2 bg-default-3">
         <div className="container">
           <div className="row align-items-center justify-content-center">
@@ -69,32 +74,33 @@ const Dashboard = () => {
               <Link className='btn btn--lg btn-primary text-white h-70 mb-2' to="/add-schedule">Add Schedule</Link>
             </div>
 
-
-
-            <div className="col-12">
-              <Calendar
-                className='big_calendar_dv'
-                localizer={localizer}
-                events={events}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 500 }}
-
-              />
-            </div>
-
-
-          </div>
-        </div>
+      <div className='col-12'>
+      <Calendar
+      className='big_calendar_dv'
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500 }}
+        onSelectEvent={(event) => {
+          setSelectedEvent(event);
+          console.log(event);
+          if (event.meetings.length > 0) {
+            setIsMeetingDetailsModalOpen(true);
+          } 
+        }}
+      />
+      </div>
+      
+      </div>
+      </div>
       </section>
 
-
-
-
-
-
-
-
+      <MeetingDetailModal 
+        isMeetingDetailsModalOpen={isMeetingDetailsModalOpen}
+        handleCloseIsMeetingDetailsModalOpen={handleCloseIsMeetingDetailsModalOpen}
+        selectedEvent={selectedEvent}
+      />
     </>
   )
 }

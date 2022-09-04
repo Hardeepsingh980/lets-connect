@@ -18,7 +18,7 @@ const Footer = () => {
             <div class="row align-items-center justify-content-center">
               <div class="col-md-12">
                 <div class="copyright text-center">
-                  <p class="copyright__text">© Pyrites, All Rights Reserved</p>
+                  <p class="copyright__text">© Pyrates, All Rights Reserved</p>
                 </div>
               </div>
             </div>

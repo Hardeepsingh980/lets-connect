@@ -34,6 +34,7 @@
 
 .popup_style1_body{
   background: #fff;
+  width: 100%;
   max-width: 500px;
   margin: auto;
   padding: 25px 20px 20px;
@@ -618,6 +619,57 @@ section{
   color: #000;
   text-transform: capitalize;
 }
+
+
+
+
+
+
+
+
+
+
+
+.meeting_table{
+  width: 100%;
+}
+.meeting_table tr{}
+.meeting_table th,
+.meeting_table td{
+  font-size: 15px;
+}
+.meeting_table th{
+  font-weight: 600;
+}
+.meeting_table td{
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+}
+
+
+
+
+
+
+.dv256885525{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

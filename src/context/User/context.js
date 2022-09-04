@@ -5,6 +5,8 @@ import { CHANGE_ERROR, CHANGE_TOKEN, CHANGE_LOADING, CHANGE_USER, CHANGE_SCHEDUL
 import axios from 'axios';
 import { useAlert } from 'react-alert'
 
+import {APIURL} from '../../const';
+
 
 const UserContext = createContext();
 
@@ -20,7 +22,7 @@ const UserProvider = ({ children }) => {
     const [userState, dispatch] = useReducer(reducer, initialState);
     const alert = useAlert()
 
-    const URL = 'http://192.168.197.18:8088';
+    const URL = APIURL;
 
 
     const init = async () => {
