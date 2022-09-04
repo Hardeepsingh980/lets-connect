@@ -30,13 +30,6 @@ const MakeProfileUrl = () => {
 
 
 
-
-
-
-
-
-
-
       <section className="service-area service-area--l1 border-top border-default-color-2 bg-default-3">
         <div className="container">
           <div className="row align-items-end justify-content-center">
