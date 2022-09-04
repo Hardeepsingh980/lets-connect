@@ -18,9 +18,8 @@ const localizer = momentLocalizer(moment)
 
 
 
-const CalendarForPublic = ({ match, props }) => {
+const IFrameCalendarForPublic = ({ match, props }) => {
 
-  console.log('AAAAAS');
 
   const [events, setEvents] = useState([]);
 
@@ -31,8 +30,6 @@ const CalendarForPublic = ({ match, props }) => {
   const [isBookSlotModalOpen, setIsBookSlotModalOpen] = useState(false);
 
   const [isNotifyMeModalOpen, setIsNotifyMeModalOpen] = useState(false);
-
-  const [refresh, setRefresh] = useState(false);
 
 
 
@@ -58,7 +55,6 @@ const CalendarForPublic = ({ match, props }) => {
         event.slots.map((slot) => {
           if (!slot.is_available) {
             setEvents((events) => [...events, {
-              id: slot.id,
               title: "Busy",
               start: new Date(event.date + " " + slot.from_time),
               end: new Date(event.date + " " + slot.to_time),
@@ -66,7 +62,6 @@ const CalendarForPublic = ({ match, props }) => {
           }
           else {
             setEvents((events) => [...events, {
-              id: slot.id,
               title: "Available",
               start: new Date(event.date + " " + slot.from_time),
               end: new Date(event.date + " " + slot.to_time),
@@ -82,12 +77,10 @@ const CalendarForPublic = ({ match, props }) => {
 
   useEffect(() => {
     getEvents();
-  }, [refresh])
+  }, [])
 
   return (
-
-
-    notFound ? <>User not Found</> : <>
+     notFound ? <>User not Found</> : <>
       <div>Dashboard</div>
       <Calendar
         localizer={localizer}
@@ -97,11 +90,8 @@ const CalendarForPublic = ({ match, props }) => {
         style={{ height: 500 }}
         onSelectEvent={(event) => {
           setSelectedEvent(event);
-          if (event.title === "Available") {
-            setIsBookSlotModalOpen(true);
-          } else {
-            setIsNotifyMeModalOpen(true);
-          }
+          // setIsBookSlotModalOpen(true);
+          setIsNotifyMeModalOpen(true);
         }}
       />
 
@@ -110,7 +100,6 @@ const CalendarForPublic = ({ match, props }) => {
         isBookSlotModalOpen={isBookSlotModalOpen}
         handleCloseBookSlotModal={handleCloseBookSlotModal}
         selectedEvent={selectedEvent}
-        setRefresh={setRefresh}
 
       />
 
@@ -118,12 +107,12 @@ const CalendarForPublic = ({ match, props }) => {
         isNotifyMeModalOpen={isNotifyMeModalOpen}
         handleCloseNotifyMeModal={handleCloseNotifyMeModal}
         selectedEvent={selectedEvent}
-        setRefresh={setRefresh}
       />
 
     </>
+    
 
   )
 }
 
-export default CalendarForPublic
+export default IFrameCalendarForPublic;

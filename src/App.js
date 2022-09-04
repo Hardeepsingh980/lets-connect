@@ -26,6 +26,7 @@ import MakeProfileUrl from './ui/authenticated/MakeProfileUrl';
 import AddSchedule from './ui/authenticated/AddSchedule';
 import Profile from './ui/authenticated/Profile';
 import CalendarForPublic from './ui/auth/CalendarForPublic';
+import IFrameCalendarForPublic from './ui/auth/IframeCalenderForPublic';
 
 const options = {
   // you can also just use 'bottom center'
@@ -46,9 +47,8 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
       <UserProvider>
         <BrowserRouter>
-        <Header />
+        
             <MyRoutes />
-          <Footer />
   
         </BrowserRouter>
       </UserProvider>
@@ -71,12 +71,13 @@ function MyRoutes() {
     <>  
 
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/:profileUrl?" element={<CalendarForPublic />} />
-        <Route path="/profile-url" element={<RequireAuth><MakeProfileUrl /></RequireAuth>} />
-        <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
-        <Route path="/add-schedule" element={<RequireAuth><AddSchedule /></RequireAuth>} />
-        <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route exact path="/" element={<><Header /><Home /><Footer/></>} />
+        <Route path="/:profileUrl" element={ <><Header /><CalendarForPublic /><Footer/></>} />
+        <Route path="/iframe/:profileUrl" element={<IFrameCalendarForPublic />} />
+        <Route path="/profile-url" element={ <><Header /><RequireAuth><MakeProfileUrl /></RequireAuth><Footer/></> } />
+        <Route path="/dashboard" element={  <><Header /><RequireAuth><Dashboard /></RequireAuth><Footer/></>} />
+        <Route path="/add-schedule" element={  <><Header /><RequireAuth><AddSchedule /></RequireAuth><Footer/></> } />
+        <Route path="/profile" element={ <><Header /><RequireAuth><Profile /></RequireAuth><Footer/></>  } />
 
 
       </Routes>
